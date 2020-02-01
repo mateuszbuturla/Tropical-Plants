@@ -3,6 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import config from './config';
 
+import ScrollToTop from './components/ScrollToTop';
+
 import Nav from './view/Nav/Nav';
 import Home from './view/Home/Home';
 import PlantsList from './view/PlantsList/PlantsList';
@@ -14,6 +16,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTop />
         <Nav />
         <Switch>
           <Route path="/:type" component={(props) => <PlantsList {...props} config={config} />} exact />
