@@ -43,6 +43,9 @@
                 text-decoration: none
                 position: relative
                 cursor: pointer
+                transition: .3s
+                &:hover
+                    color: #94F273
             .nav__link--active
                 &::before
                     content: ''
@@ -53,6 +56,8 @@
                     left: 40%
                     background-color: #94F273
                     z-index: -1
+                &:hover
+                    color: #707070
         .nav__search
             border-bottom: 3px solid #94F273
             width: 200px
