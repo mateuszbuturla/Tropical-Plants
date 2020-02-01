@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import Plant from './Plant/Plant';
+import Plant from '../../components/Plant';
 
 import './home.sass';
 
-import plantImg from './img/plant.png';
+import plantImg from '../../img/plantHeader.png';
 
 class Home extends React.Component {
 
@@ -49,17 +50,21 @@ class Home extends React.Component {
                     <div className="home__plants-container">
                         {_plantsFlowerpot.slice(0, 6)}
                     </div>
-                    <div className="home__show-more-button">
-                        Zobacz więcej
-                    </div>
+                    <Link style={{ textDecoration: 'none' }} to='/flowerpot'>
+                        <div className="home__show-more-button">
+                            Zobacz więcej
+                        </div>
+                    </Link>
                     <h2 className="home__recommended-plants-header">Polecane Rośliny Ogrodowe</h2>
                     <hr className="home__line" />
                     <div className="home__plants-container">
                         {_plantsGarden.slice(0, 6)}
                     </div>
-                    <div className="home__show-more-button">
-                        Zobacz więcej
-                    </div>
+                    <Link style={{ textDecoration: 'none' }} to='/garden'>
+                        <div className="home__show-more-button">
+                            Zobacz więcej
+                        </div>
+                    </Link>
                 </section>
             </>
         );

@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import config from './config';
 
 import Home from './view/Home/Home';
+import PlantsList from './view/PlantsList/PlantsList';
 import Footer from './view/Footer/Footer';
 
 import './reset.css';
@@ -13,6 +14,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
+          <Route path="/:type" component={(props) => <PlantsList {...props} config={config} />} exact />
           <Route path="/" component={(props) => <Home {...props} config={config} />} exact />
         </Switch>
       </BrowserRouter>
