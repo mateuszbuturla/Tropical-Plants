@@ -1,6 +1,7 @@
 .plants-list
     overflow-x: hidden
     text-align: center
+    padding-top: 40px
     .plants-list__header
         width: 100vw
         .plants-list__header-text
@@ -8,7 +9,7 @@
             margin: 0 auto
             padding: 10% 0px
             .plants-list__header-h1
-                font-size: 5vw
+                font-size: 9vw
                 display: inline
                 position: relative
                 &::before
@@ -22,7 +23,7 @@
                     z-index: -1
             .plants-list__header-p
                 margin-top: 10%
-                font-size: 3vw
+                font-size: 5vw
         .plants-list__header-img-container
             display: none
     .plants-list__plants-container
@@ -36,6 +37,7 @@
 
 @media (orientation: landscape)
     .plants-list
+        padding-top: 0
         .plants-list__header
             width: 100vw
             height: 100vh
@@ -46,8 +48,11 @@
                 width: 50%
                 margin: 0 auto
                 padding: 0 
+                .plants-list__header-h1
+                    font-size: 5vw
                 .plants-list__header-p
                     margin-top: 10%
+                    font-size: 3vw
             .plants-list__header-img-container
                 display: block
                 width: 50%
@@ -57,5 +62,6 @@
 
 @media (min-width: 1366px)
     .plants-list
+        padding-top: 0px
         .plants-list__plants-container
             margin-top: 100px
