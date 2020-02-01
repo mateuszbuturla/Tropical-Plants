@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import config from './config';
 
 import Home from './view/Home/Home';
+import Footer from './view/Footer/Footer';
 
 import './reset.css';
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" component={(props) => <Home {...props} config={config} />} exact />
         </Switch>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
