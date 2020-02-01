@@ -31,6 +31,7 @@
                 width: 90%
     .home__recommended-plants-header
         font-size: 30px
+        margin-top: 80px
     .home__line
         border: 0
         height: 3px
@@ -48,7 +49,26 @@
         display: flex
         flex-wrap: wrap
         justify-content: space-around
-        margin-bottom: 40px
+    .home__show-more-button
+        position: relative
+        display: inline
+        font-size: 20px
+        cursor: pointer
+        &::before
+            content: ''
+            position: absolute
+            bottom: -5px
+            right: -5px
+            top: 50%
+            left: 40%
+            background-color: #94F273
+            z-index: -1
+            transition: .5s
+        &:hover
+            &::before
+                top: -5px
+                left: -5px
+                
 
 @media (orientation: landscape)
     .home
@@ -99,6 +119,8 @@
             margin-top: 20px
         .home__plants-container
             margin-top: 70px
+        .home__show-more-button
+            font-size: 30px
 
 @media (min-width: 1024px)
     .home
@@ -113,6 +135,8 @@
         .home__line
             height: 5px
             margin-top: 20px
+        .home__show-more-button
+            font-size: 32px
 
 
 @media (min-width: 1366px)
@@ -125,7 +149,10 @@
                     font-size: 40px
         .home__recommended-plants-header
             font-size: 50px
-
+        .home__show-more-button
+            font-size: 30px
+        .home__show-more-button
+            font-size: 35px
 
 @media (min-width: 1400px)
     .home
@@ -141,4 +168,5 @@
                     margin: 10% auto
         .home__plants-container
             margin-top: 90px
-            margin-bottom: 90px
+        .home__show-more-button
+            font-size: 28px

@@ -25,18 +25,12 @@ class Home extends React.Component {
 
     render() {
         const { plants } = this.state;
-        const _plantsFlowerpot = plants.map(plant => <>
-            {
-                plant.type === 'flowerpot' &&
-                <Plant key={plant._id} plant={plant} />
-            }
-        </>)
-        const _plantsGarden = plants.map(plant => <>
-            {
-                plant.type === 'garden' &&
-                <Plant key={plant._id} plant={plant} />
-            }
-        </>)
+
+        const _plantsFlowerpot = plants.filter(plant => plant.type === 'flowerpot')
+            .map(plant => <Plant key={plant._id} plant={plant} />)
+
+        const _plantsGarden = plants.filter(plant => plant.type === 'garden')
+            .map(plant => <Plant key={plant._id} plant={plant} />)
 
         return (
             <>
@@ -53,12 +47,18 @@ class Home extends React.Component {
                     <h2 className="home__recommended-plants-header">Polecane Rośliny Doniczkowe</h2>
                     <hr className="home__line" />
                     <div className="home__plants-container">
-                        {_plantsFlowerpot}
+                        {_plantsFlowerpot.slice(0, 6)}
+                    </div>
+                    <div className="home__show-more-button">
+                        Zobacz więcej
                     </div>
                     <h2 className="home__recommended-plants-header">Polecane Rośliny Ogrodowe</h2>
                     <hr className="home__line" />
                     <div className="home__plants-container">
-                        {_plantsGarden}
+                        {_plantsGarden.slice(0, 6)}
+                    </div>
+                    <div className="home__show-more-button">
+                        Zobacz więcej
                     </div>
                 </section>
             </>
