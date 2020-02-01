@@ -2,6 +2,10 @@ import React from 'react';
 
 import Plant from './Plant/Plant';
 
+import './home.sass';
+
+import plantImg from './img/plant.png';
+
 class Home extends React.Component {
 
     state = {
@@ -36,9 +40,27 @@ class Home extends React.Component {
 
         return (
             <>
-                {_plantsFlowerpot}
-                <hr />
-                {_plantsGarden}
+                <section className="home">
+                    <header className="home__header">
+                        <div className="home__header-text">
+                            <h1 className="home__header-h1">Tropical Plants</h1>
+                            <p className="home__header-p">Najlepsze rośliny dla Twojego domu i ogrodu</p>
+                        </div>
+                        <div className="home__header-img-container">
+                            <img className="home__header-plant" src={plantImg} alt="" />
+                        </div>
+                    </header>
+                    <h2 className="home__recommended-plants-header">Polecane Rośliny Doniczkowe</h2>
+                    <hr className="home__line" />
+                    <div className="home__plants-container">
+                        {_plantsFlowerpot}
+                    </div>
+                    <h2 className="home__recommended-plants-header">Polecane Rośliny Ogrodowe</h2>
+                    <hr className="home__line" />
+                    <div className="home__plants-container">
+                        {_plantsGarden}
+                    </div>
+                </section>
             </>
         );
     }
