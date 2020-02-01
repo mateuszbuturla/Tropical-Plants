@@ -5,7 +5,7 @@ const Container = styled.div`
     margin-bottom: 50px;
     text-align: left;
     width: 100%;
-    @media (min-width: 640px)
+    @media (min-width: 560px)
     {
         width: 45%;
     }

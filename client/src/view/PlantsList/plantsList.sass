@@ -1,0 +1,61 @@
+.plants-list
+    overflow-x: hidden
+    text-align: center
+    .plants-list__header
+        width: 100vw
+        .plants-list__header-text
+            width: 80%
+            margin: 0 auto
+            padding: 10% 0px
+            .plants-list__header-h1
+                font-size: 5vw
+                display: inline
+                position: relative
+                &::before
+                    content: ''
+                    position: absolute
+                    bottom: -5px
+                    right: -5px
+                    top: 50%
+                    left: 40%
+                    background-color: #94F273
+                    z-index: -1
+            .plants-list__header-p
+                margin-top: 10%
+                font-size: 3vw
+        .plants-list__header-img-container
+            display: none
+    .plants-list__plants-container
+        width: 90%
+        max-width: 1500px
+        margin: 0 auto
+        margin-top: 80px
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-around
+
+@media (orientation: landscape)
+    .plants-list
+        .plants-list__header
+            width: 100vw
+            height: 100vh
+            overflow: hidden
+            display: flex
+            align-items: center
+            .plants-list__header-text
+                width: 50%
+                margin: 0 auto
+                padding: 0 
+                .plants-list__header-p
+                    margin-top: 10%
+            .plants-list__header-img-container
+                display: block
+                width: 50%
+                height: 100vh
+                .plants-list__header-img
+                    height: 100%
+
+@media (min-width: 1366px)
+    .plants-list
+        .plants-list__plants-container
+            margin-top: 100px
