@@ -1,0 +1,148 @@
+.schoping-cart
+    padding-top: 40px
+    padding-bottom: 50px
+    overflow-x: hidden
+    text-align: center
+    .schoping-cart__header
+        width: 100vw
+        margin-bottom: 100px
+        .schoping-cart__header-text
+            width: 80%
+            margin: 15% auto 0 auto
+            .schoping-cart__header-h1
+                font-size: 9vw
+                display: inline
+                position: relative
+                &::before
+                    content: ''
+                    position: absolute
+                    bottom: -5px
+                    right: -5px
+                    top: 50%
+                    left: 40%
+                    background-color: #94F273
+                    z-index: -1
+            .schoping-cart__header-p
+                margin-top: 50px
+                font-size: 5vw
+        .schoping-cart__header-img-container
+            display: none
+    .schoping-cart__shoping-cart
+        font-size: 30px
+        margin-top: 80px
+    .schoping-cart__line
+        border: 0
+        height: 3px
+        width: 200px
+        background-color: #94F273
+        position: relative
+        left: 50%
+        transform: translateX(-50%)
+        margin-top: 10px
+    .schoping-cart__plants-container,
+    .schoping-cart__pay-container
+        width: 90%
+        max-width: 1500px
+        margin: 0 auto
+        margin-top: 50px
+    .schoping-cart__pay-container
+        max-width: 800px
+        display: flex
+        justify-content: space-between
+        align-items: center
+        .schoping-cart__pay-button
+            position: relative
+            display: inline
+            font-size: 22px
+            cursor: pointer
+            &::before
+                content: ''
+                position: absolute
+                bottom: -5px
+                right: -5px
+                top: 50%
+                left: 40%
+                background-color: #94F273
+                z-index: -1
+                transition: .5s
+            &:hover
+                &::before
+                    top: -5px
+                    left: -5px
+        .schoping-cart__all-price
+            font-size: 22px
+
+@media (orientation: landscape) 
+    .schoping-cart
+        .schoping-cart__header
+            display: flex
+            justify-content: space-around
+            align-items: center
+            margin-bottom: 20px
+            .schoping-cart__header-text
+                width: 45%
+                margin: 0
+                .schoping-cart__header-h1
+                    font-size: 6vw
+                .schoping-cart__header-p
+                    margin-top: 30px
+                    font-size: 3vw
+            .schoping-cart__header-img-container
+                display: block
+                width: 40%
+                margin: 0
+                height: 50vh
+                .schoping-cart__header-plant
+                    width: auto
+                    height: 90%
+                    position: relative
+                    top: 50%
+                    transform: translateY(-50%)
+
+@media (min-width: 768px)
+    .schoping-cart
+        .schoping-cart__container
+            .schoping-cart__description-container
+                .schoping-cart__description
+                    .schoping-cart__description-header
+                        font-size: 25px
+                    .schoping-cart__description-content
+                        font-size: 20px
+
+@media (orientation: landscape) and (min-width: 1024px)
+    .schoping-cart
+        padding-top: 80px
+
+@media (min-width: 1366px)
+    .schoping-cart
+        .schoping-cart__header
+            .schoping-cart__header-text
+                .schoping-cart__header-h1
+                    font-size: 65px
+                .schoping-cart__header-p
+                    font-size: 40px
+
+@media (min-width: 1400px)
+    .schoping-cart
+        .schoping-cart__header
+            .schoping-cart__header-text
+                width: 80%
+                .schoping-cart__header-h1
+                    font-size: 5vw
+                .schoping-cart__header-p
+                    margin-top: 50px
+                    font-size: 2vw
+                    width: 30vw
+                    margin: 10% auto
+
+@media (min-width: 1400px)
+    .schoping-cart
+        .schoping-cart__container
+            display: flex
+            justify-content: space-around
+            .schoping-cart__description-container
+                .schoping-cart__description
+                    .schoping-cart__description-header
+                        font-size: 35px
+                    .schoping-cart__description-content
+                        font-size: 24px

@@ -41,7 +41,6 @@ class Nav extends React.Component {
     render() {
         const { showMobileMenu, search } = this.state;
         const { user, shopingcart } = this.props;
-        console.log(typeof (shopingcart))
         return (
             <>
                 <nav className="nav">

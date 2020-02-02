@@ -4,7 +4,7 @@ import plantImg from '../../img/plantHeader.png';
 
 import './plant.sass'
 
-class Search extends React.Component {
+class Plant extends React.Component {
 
     state = {
         plant: null,
@@ -77,4 +77,4 @@ class Search extends React.Component {
     }
 }
 
-export default Search;
+export default Plant;

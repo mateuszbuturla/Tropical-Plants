@@ -12,6 +12,7 @@ import PlantsList from './view/PlantsList/PlantsList';
 import Search from './view/Search/Search';
 import Login from './view/Login/Login';
 import Plant from './view/Plant/Plant';
+import ShopingCart from './view/ShopingCart/ShopingCart';
 import Footer from './view/Footer/Footer';
 
 import './reset.css';
@@ -45,6 +46,42 @@ class App extends React.Component {
     this.setState({ shopingcart: newShopingCart })
   }
 
+  addOneProduct(e, id) {
+    e.preventDefault();
+    const { shopingcart } = this.state;
+    let newShopingCart = shopingcart;
+    const index = newShopingCart.findIndex(plant => plant.id === id);
+    newShopingCart[index].amount += 1;
+    const cookies = new Cookies();
+    cookies.set('shopingcart', newShopingCart, { maxAge: 9000 });
+    this.setState({ shopingcart: newShopingCart })
+  }
+
+  subtractOneProduct(e, id) {
+    e.preventDefault();
+    const { shopingcart } = this.state;
+    let newShopingCart = shopingcart;
+    const index = newShopingCart.findIndex(plant => plant.id === id);
+    newShopingCart[index].amount -= 1;
+    if (newShopingCart[index].amount <= 0) {
+      newShopingCart.splice(index, 1)
+    }
+    const cookies = new Cookies();
+    cookies.set('shopingcart', newShopingCart, { maxAge: 9000 });
+    this.setState({ shopingcart: newShopingCart })
+  }
+
+  removePlantFromShopingCart(e, id) {
+    e.preventDefault();
+    const { shopingcart } = this.state;
+    let newShopingCart = shopingcart;
+    const index = newShopingCart.findIndex(plant => plant.id === id);
+    newShopingCart.splice(index, 1)
+    const cookies = new Cookies();
+    cookies.set('shopingcart', newShopingCart, { maxAge: 9000 });
+    this.setState({ shopingcart: newShopingCart })
+  }
+
   logout() {
     const cookies = new Cookies();
     cookies.remove('user');
@@ -59,6 +96,12 @@ class App extends React.Component {
         <BrowserRouter>
           <ScrollToTop />
           <Switch>
+            <Route path="/shopingcart" component={(props) =>
+              <>
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} shopingcart={shopingcart} />
+                <ShopingCart {...props} config={config} user={cookies.get('user')} shopingcart={shopingcart} addToShopingCart={(e, id, amount) => this.addOneProduct(e, id)} subtractOneProduct={(e, id) => this.subtractOneProduct(e, id)} removePlantFromShopingCart={(e, id) => this.removePlantFromShopingCart(e, id)} />
+              </>} exact
+            />
             <Route path="/plants/:name" component={(props) =>
               <>
                 <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} shopingcart={shopingcart} />
