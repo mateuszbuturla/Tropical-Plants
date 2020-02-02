@@ -40,7 +40,8 @@ class Nav extends React.Component {
 
     render() {
         const { showMobileMenu, search } = this.state;
-        const { user } = this.props;
+        const { user, shopingcart } = this.props;
+        console.log(typeof (shopingcart))
         return (
             <>
                 <nav className="nav">
@@ -60,10 +61,14 @@ class Nav extends React.Component {
                                 :
                                 <>
                                     <li className="nav__link-container"><p className="nav__link" onClick={this.logout.bind(this)}>Wyloguj</p></li>
-                                    <li className="nav__link-container"><NavLink className="nav__link" activeClassName="nav__link--active" to="/shopingcart" onClick={this.offMobileMenu.bind(this)}><img className="nav__shopingcart-icon" src={shopingCartIcon} alt="moje zakupy" /></NavLink></li>
                                 </>
                         }
-
+                        <li className="nav__link-container">
+                            <NavLink className="nav__link" activeClassName="nav__link--active" to="/shopingcart" onClick={this.offMobileMenu.bind(this)}>
+                                <img className="nav__shopingcart-icon" src={shopingCartIcon} alt="moje zakupy" />
+                                <p className="nav__shopingcart-products-amount">{shopingcart.length}</p>
+                            </NavLink>
+                        </li>
                         <li className="nav__search">
                             <form>
                                 <input className="nav__search-input" type="text" onChange={this.handleInputChange.bind(this)} value={search} placeholder="Szukaj" />

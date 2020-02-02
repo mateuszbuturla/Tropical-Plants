@@ -25,6 +25,12 @@ class Search extends React.Component {
         }
     }
 
+    addToShopingCart() {
+        const { plant } = this.state;
+        const { addToShopingCart } = this.props;
+        addToShopingCart(plant._id, 1);
+    }
+
     render() {
         const { plant } = this.state;
         const name = this.props.match.params.name;
@@ -60,7 +66,7 @@ class Search extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="plant__add-to-shopingcart-button">
+                            <div className="plant__add-to-shopingcart-button" onClick={this.addToShopingCart.bind(this)}>
                                 Dodaj do koszyka
                             </div>
                         </>

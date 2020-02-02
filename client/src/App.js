@@ -20,11 +20,29 @@ class App extends React.Component {
 
   state = {
     user: undefined,
+    shopingcart: [],
   }
 
   componentDidMount() {
     const cookies = new Cookies();
     this.setState({ user: cookies.get('user') })
+    if (cookies.get('shopingcart'))
+      this.setState({ shopingcart: cookies.get('shopingcart') })
+  }
+
+  addToShopingCart(id, amount) {
+    const { shopingcart } = this.state;
+    let newShopingCart = shopingcart;
+    if (newShopingCart.find(plant => plant.id === id)) {
+      const index = newShopingCart.findIndex(plant => plant.id === id);
+      newShopingCart[index].amount += 1;
+    }
+    else {
+      newShopingCart.push({ id: id, amount: amount });
+    }
+    const cookies = new Cookies();
+    cookies.set('shopingcart', newShopingCart, { maxAge: 9000 });
+    this.setState({ shopingcart: newShopingCart })
   }
 
   logout() {
@@ -34,6 +52,7 @@ class App extends React.Component {
   }
 
   render() {
+    const { shopingcart } = this.state;
     const cookies = new Cookies();
     return (
       <div className="App">
@@ -42,37 +61,37 @@ class App extends React.Component {
           <Switch>
             <Route path="/plants/:name" component={(props) =>
               <>
-                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
-                <Plant {...props} config={config} user={cookies.get('user')} />
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} shopingcart={shopingcart} />
+                <Plant {...props} config={config} user={cookies.get('user')} addToShopingCart={(id, amount) => this.addToShopingCart(id, amount)} />
               </>} exact
             />
             <Route path="/login" component={(props) =>
               <>
-                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} shopingcart={shopingcart} />
                 <Login {...props} config={config} user={cookies.get('user')} />
               </>} exact
             />
             <Route path="/search/:searchValue" component={(props) =>
               <>
-                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} shopingcart={shopingcart} />
                 <Search {...props} config={config} user={cookies.get('user')} />
               </>}
             />
             <Route path="/search" component={(props) =>
               <>
-                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} shopingcart={shopingcart} />
                 <Search {...props} config={config} user={cookies.get('user')} />
               </>}
             />
             <Route path="/:type" component={(props) =>
               <>
-                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} shopingcart={shopingcart} />
                 <PlantsList {...props} config={config} user={cookies.get('user')} />
               </>} exact
             />
             <Route path="/" component={(props) =>
               <>
-                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} shopingcart={shopingcart} />
                 <Home {...props} config={config} user={cookies.get('user')} />
               </>} exact
             />
