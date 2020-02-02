@@ -15,23 +15,66 @@ import Footer from './view/Footer/Footer';
 
 import './reset.css';
 
-function App() {
-  const cookies = new Cookies();
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <ScrollToTop />
-        <Switch>
-          <Route path="/login" component={(props) => <><Nav {...props} config={config} user={cookies.get('user')} /><Login {...props} config={config} user={cookies.get('user')} /></>} />
-          <Route path="/search/:searchValue" component={(props) => <><Nav {...props} config={config} user={cookies.get('user')} /><Search {...props} config={config} user={cookies.get('user')} /></>} />
-          <Route path="/search" component={(props) => <><Nav {...props} config={config} user={cookies.get('user')} /><Search {...props} config={config} user={cookies.get('user')} /></>} />
-          <Route path="/:type" component={(props) => <><Nav {...props} config={config} user={cookies.get('user')} /><PlantsList {...props} config={config} user={cookies.get('user')} /></>} exact />
-          <Route path="/" component={(props) => <><Nav {...props} config={config} user={cookies.get('user')} /><Home {...props} config={config} user={cookies.get('user')} /></>} exact />
-        </Switch>
-      </BrowserRouter>
-      <Footer />
-    </div>
-  );
+class App extends React.Component {
+
+  state = {
+    user: undefined,
+  }
+
+  componentDidMount() {
+    const cookies = new Cookies();
+    this.setState({ user: cookies.get('user') })
+  }
+
+  logout() {
+    const cookies = new Cookies();
+    cookies.remove('user');
+    this.setState({ user: undefined })
+  }
+
+  render() {
+    const cookies = new Cookies();
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <ScrollToTop />
+          <Switch>
+            <Route path="/login" component={(props) =>
+              <>
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
+                <Login {...props} config={config} user={cookies.get('user')} />
+              </>}
+            />
+            <Route path="/search/:searchValue" component={(props) =>
+              <>
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
+                <Search {...props} config={config} user={cookies.get('user')} />
+              </>}
+            />
+            <Route path="/search" component={(props) =>
+              <>
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
+                <Search {...props} config={config} user={cookies.get('user')} />
+              </>}
+            />
+            <Route path="/:type" component={(props) =>
+              <>
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
+                <PlantsList {...props} config={config} user={cookies.get('user')} />
+              </>} exact
+            />
+            <Route path="/" component={(props) =>
+              <>
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
+                <Home {...props} config={config} user={cookies.get('user')} />
+              </>} exact
+            />
+          </Switch>
+        </BrowserRouter>
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;
