@@ -9,12 +9,25 @@ import './plantsList.sass';
 class PlantsList extends React.Component {
 
     state = {
-        plants: []
+        plants: [],
+        prevouseUrl: ''
     }
 
     componentDidMount() {
+        this.getData();
+    }
+
+    componentDidUpdate() {
+        const { prevouseUrl } = this.state;
+        const currentUrl = this.props.match.params.type;
+        if (prevouseUrl !== currentUrl)
+            this.getData();
+    }
+
+    getData() {
         try {
             const type = this.props.match.params.type;
+            this.setState({ prevouseUrl: type })
             fetch(`${this.props.config.api}/api/getPlants/${type}`, { method: 'POST' })
                 .then(r => r.json())
                 .then(r => this.setState({ plants: r }))
