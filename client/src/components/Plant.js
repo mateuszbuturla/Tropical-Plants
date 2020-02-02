@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
     margin-bottom: 50px;
@@ -67,8 +68,10 @@ const Img = styled.img`
 function Plant(props) {
     return (
         <Container>
-            <PlantName>{props.plant.name}</PlantName>
-            <Img src={process.env.PUBLIC_URL + `/plants/${props.plant.imgsrc}`} />
+            <Link to={`/plants/${props.plant.name}`} style={{ textDecoration: 'none' }}>
+                <PlantName>{props.plant.name}</PlantName>
+                <Img src={process.env.PUBLIC_URL + `/plants/${props.plant.imgsrc}`} />
+            </Link>
         </Container>
     );
 }

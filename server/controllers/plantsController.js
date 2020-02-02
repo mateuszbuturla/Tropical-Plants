@@ -1,4 +1,4 @@
-const plantsModel = require('../models/plantsController');
+const plantsModel = require('../models/plantsModel');
 
 exports.getPlants = async (req, res) => {
     try {
@@ -11,6 +11,14 @@ exports.getPlants = async (req, res) => {
 exports.getPlantsType = async (req, res) => {
     try {
         res.status(200).json(await plantsModel.find({ type: req.params.type }))
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
+
+exports.getPlantByName = async (req, res) => {
+    try {
+        res.status(200).json(await plantsModel.find({ name: req.params.name }))
     } catch (err) {
         res.status(500).json(err);
     }

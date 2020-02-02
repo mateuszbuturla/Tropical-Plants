@@ -11,6 +11,7 @@ import Home from './view/Home/Home';
 import PlantsList from './view/PlantsList/PlantsList';
 import Search from './view/Search/Search';
 import Login from './view/Login/Login';
+import Plant from './view/Plant/Plant';
 import Footer from './view/Footer/Footer';
 
 import './reset.css';
@@ -39,11 +40,17 @@ class App extends React.Component {
         <BrowserRouter>
           <ScrollToTop />
           <Switch>
+            <Route path="/plants/:name" component={(props) =>
+              <>
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
+                <Plant {...props} config={config} user={cookies.get('user')} />
+              </>} exact
+            />
             <Route path="/login" component={(props) =>
               <>
                 <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} />
                 <Login {...props} config={config} user={cookies.get('user')} />
-              </>}
+              </>} exact
             />
             <Route path="/search/:searchValue" component={(props) =>
               <>

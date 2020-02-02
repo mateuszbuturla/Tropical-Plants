@@ -1,0 +1,203 @@
+.plant
+    padding-top: 40px
+    padding-bottom: 50px
+    overflow-x: hidden
+    text-align: center
+    .plant__header
+        width: 100vw
+        margin-bottom: 100px
+        .plant__header-text
+            width: 80%
+            margin: 15% auto 0 auto
+            .plant__header-h1
+                font-size: 9vw
+                display: inline
+                position: relative
+                &::before
+                    content: ''
+                    position: absolute
+                    bottom: -5px
+                    right: -5px
+                    top: 50%
+                    left: 40%
+                    background-color: #94F273
+                    z-index: -1
+            .plant__header-p
+                margin-top: 50px
+                font-size: 5vw
+        .plant__header-img-container
+            display: none
+    .plant__plant-name
+        font-size: 30px
+        margin-top: 80px
+    .plant__line
+        border: 0
+        height: 3px
+        width: 200px
+        background-color: #94F273
+        position: relative
+        left: 50%
+        transform: translateX(-50%)
+        margin-top: 10px
+    .plant__container
+        width: 90%
+        max-width: 1500px
+        margin: 40px auto 20px auto
+        .plant__img-container
+            width: 100%
+            .plant__img
+                width: 100%
+        .plant__description-container
+            margin-top: 35px
+            .plant__description
+                margin-bottom: 35px
+                text-align: left
+                .plant__description-header
+                    text-transform: uppercase
+                    position: relative
+                    display: inline
+                    font-size: 20px
+                    &::before
+                        content: ''
+                        position: absolute
+                        bottom: -5px
+                        right: -5px
+                        top: 50%
+                        left: 40%
+                        background-color: #94F273
+                        z-index: -1
+                .plant__description-content
+                    margin-top: 20px
+    .plant__add-to-shopingcart-button
+        position: relative
+        display: inline
+        font-size: 20px
+        cursor: pointer
+        &::before
+            content: ''
+            position: absolute
+            bottom: -5px
+            right: -5px
+            top: 50%
+            left: 40%
+            background-color: #94F273
+            z-index: -1
+            transition: .5s
+        &:hover
+            &::before
+                top: -5px
+                left: -5px
+
+@media (orientation: landscape) 
+    .plant
+        .plant__header
+            display: flex
+            justify-content: space-around
+            align-items: center
+            margin-bottom: 20px
+            .plant__header-text
+                width: 45%
+                margin: 0
+                .plant__header-h1
+                    font-size: 6vw
+                .plant__header-p
+                    margin-top: 30px
+                    font-size: 3vw
+            .plant__header-img-container
+                display: block
+                width: 40%
+                margin: 0
+                height: 50vh
+                .plant__header-plant
+                    width: auto
+                    height: 90%
+                    position: relative
+                    top: 50%
+                    transform: translateY(-50%)
+        .plant__container
+            .plant__img-container
+                width: 50%
+                margin: 0 auto
+                .plant__img
+                    width: 100%
+            .plant__description-container
+                display: flex
+                justify-content: space-around
+                .plant__description
+                    width: 45%
+
+@media (min-width: 768px)
+    .plant
+        .plant__container
+            .plant__description-container
+                .plant__description
+                    .plant__description-header
+                        font-size: 25px
+                    .plant__description-content
+                        font-size: 20px
+        .plant__add-to-shopingcart-button
+            font-size: 30px
+
+@media (orientation: landscape) and (min-width: 1024px)
+    .plant
+        padding-top: 80px
+    
+@media (min-width: 1024px)
+    .plant
+        .plant__line
+            height: 5px
+            margin-top: 20px
+        .plant__add-to-shopingcart-button
+            font-size: 32px
+
+@media (min-width: 1366px)
+    .plant
+        .plant__header
+            .plant__header-text
+                .plant__header-h1
+                    font-size: 65px
+                .plant__header-p
+                    font-size: 40px
+        .plant__add-to-shopingcart-button
+            font-size: 35px
+
+@media (min-width: 1400px)
+    .plant
+        .plant__header
+            .plant__header-text
+                width: 80%
+                .plant__header-h1
+                    font-size: 5vw
+                .plant__header-p
+                    margin-top: 50px
+                    font-size: 2vw
+                    width: 30vw
+                    margin: 10% auto
+        .plant__container
+            display: flex
+            justify-content: space-around
+            .plant__img-container
+                width: 45%
+                .plant__img
+                    width: 100%
+            .plant__description-container
+                width: 45%
+                display: flex
+                justify-content: space-around
+                margin: 0
+                .plant__description
+                    width: 45%
+
+@media (min-width: 1400px)
+    .plant
+        .plant__container
+            display: flex
+            justify-content: space-around
+            .plant__description-container
+                .plant__description
+                    .plant__description-header
+                        font-size: 35px
+                    .plant__description-content
+                        font-size: 24px
+        .plant__add-to-shopingcart-button
+            font-size: 28px
