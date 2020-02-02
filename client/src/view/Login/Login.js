@@ -18,7 +18,7 @@ class Login extends React.Component {
 
     submitLoginForm(e) {
         e.preventDefault();
-
+        const { getUser } = this.props;
         const { login, password } = this.state;
         if (login.length > 0 && password.length > 0) {
             try {
@@ -28,6 +28,7 @@ class Login extends React.Component {
                         if (r.status === 'correct') {
                             const cookies = new Cookies();
                             cookies.set('user', r.user, { maxAge: 9000 });
+                            getUser();
                             this.props.history.push(`/`);
                         }
                         else if (r.status === 'incorrect') {

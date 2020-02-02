@@ -33,7 +33,7 @@ class App extends React.Component {
   }
 
   addToShopingCart(id, amount) {
-    const { shopingcart } = this.state;
+    const { shopingcart, user } = this.state;
     let newShopingCart = shopingcart;
     if (newShopingCart.find(plant => plant.id === id)) {
       const index = newShopingCart.findIndex(plant => plant.id === id);
@@ -45,22 +45,26 @@ class App extends React.Component {
     const cookies = new Cookies();
     cookies.set('shopingcart', newShopingCart, { maxAge: 9000 });
     this.setState({ shopingcart: newShopingCart })
+    if (user !== undefined)
+      this.synhronizationWithAccount(newShopingCart);
   }
 
   addOneProduct(e, id) {
     e.preventDefault();
-    const { shopingcart } = this.state;
+    const { shopingcart, user } = this.state;
     let newShopingCart = shopingcart;
     const index = newShopingCart.findIndex(plant => plant.id === id);
     newShopingCart[index].amount += 1;
     const cookies = new Cookies();
     cookies.set('shopingcart', newShopingCart, { maxAge: 9000 });
     this.setState({ shopingcart: newShopingCart })
+    if (user !== undefined)
+      this.synhronizationWithAccount(newShopingCart);
   }
 
   subtractOneProduct(e, id) {
     e.preventDefault();
-    const { shopingcart } = this.state;
+    const { shopingcart, user } = this.state;
     let newShopingCart = shopingcart;
     const index = newShopingCart.findIndex(plant => plant.id === id);
     newShopingCart[index].amount -= 1;
@@ -70,23 +74,43 @@ class App extends React.Component {
     const cookies = new Cookies();
     cookies.set('shopingcart', newShopingCart, { maxAge: 9000 });
     this.setState({ shopingcart: newShopingCart })
+    if (user !== undefined)
+      this.synhronizationWithAccount(newShopingCart);
   }
 
   removePlantFromShopingCart(e, id) {
     e.preventDefault();
-    const { shopingcart } = this.state;
+    const { shopingcart, user } = this.state;
     let newShopingCart = shopingcart;
     const index = newShopingCart.findIndex(plant => plant.id === id);
     newShopingCart.splice(index, 1)
     const cookies = new Cookies();
     cookies.set('shopingcart', newShopingCart, { maxAge: 9000 });
     this.setState({ shopingcart: newShopingCart })
+    if (user !== undefined)
+      this.synhronizationWithAccount(newShopingCart);
+  }
+
+  synhronizationWithAccount(newShopingCart) {
+    const { user } = this.state;
+    let newUser = user;
+    newUser.shopingcart = newShopingCart;
+    this.setState({ user: newUser })
+    fetch(`${config.api}/api/user/updateshopingcart/${user._id}/${JSON.stringify(newShopingCart)}`, { method: 'POST' })
   }
 
   logout() {
     const cookies = new Cookies();
     cookies.remove('user');
-    this.setState({ user: undefined })
+    cookies.remove('shopingcart');
+    this.setState({ user: undefined, shopingcart: [] })
+  }
+
+  getUser() {
+    const { shopingcart } = this.state;
+    const cookies = new Cookies();
+    this.setState({ user: cookies.get('user'), shopingcart: shopingcart.concat(cookies.get('user').shopingcart) })
+    this.synhronizationWithAccount(shopingcart.concat(cookies.get('user').shopingcart));
   }
 
   render() {
@@ -118,7 +142,7 @@ class App extends React.Component {
             <Route path="/login" component={(props) =>
               <>
                 <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} shopingcart={shopingcart} />
-                <Login {...props} config={config} user={cookies.get('user')} />
+                <Login {...props} config={config} user={cookies.get('user')} getUser={() => this.getUser()} />
               </>} exact
             />
             <Route path="/search/:searchValue" component={(props) =>

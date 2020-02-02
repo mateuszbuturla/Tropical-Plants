@@ -14,4 +14,6 @@ module.exports = (app) => {
     app.post('/api/user/login/:login/:password', usersController.userLogin);
 
     app.post('/api/user/register/:login/:password', usersController.userRegister);
+
+    app.post('/api/user/updateshopingcart/:id/:shopingcart', usersController.updateShopingCart);
 }

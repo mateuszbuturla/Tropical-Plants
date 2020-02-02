@@ -40,3 +40,16 @@ exports.userRegister = async (req, res) => {
         res.status(500).json({ message: 'error' });
     }
 }
+
+exports.updateShopingCart = async (req, res) => {
+    const { shopingcart, id } = req.params;
+    try {
+        userModel.updateOne({ _id: id }, { shopingcart: JSON.parse(shopingcart) }, (err, ere) => {
+            if (err)
+                return console.log(err)
+        })
+    }
+    catch{
+        res.status(500).json({ message: 'error' });
+    }
+}
