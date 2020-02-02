@@ -15,3 +15,11 @@ exports.getPlantsType = async (req, res) => {
         res.status(500).json(err);
     }
 }
+
+exports.searchPlants = async (req, res) => {
+    try {
+        res.status(200).json(await plantsModel.find({ name: { "$regex": req.params.searchValue, "$options": "i" } }))
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}

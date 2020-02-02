@@ -1,0 +1,139 @@
+.search
+    padding-top: 40px
+    overflow-x: hidden
+    text-align: center
+    .search__header
+        width: 100vw
+        margin-bottom: 100px
+        .search__header-text
+            width: 80%
+            margin: 15% auto 0 auto
+            .search__header-h1
+                font-size: 9vw
+                display: inline
+                position: relative
+                &::before
+                    content: ''
+                    position: absolute
+                    bottom: -5px
+                    right: -5px
+                    top: 50%
+                    left: 40%
+                    background-color: #94F273
+                    z-index: -1
+            .search__header-p
+                margin-top: 50px
+                font-size: 5vw
+        .search__header-img-container
+            display: none
+    .search__container
+        width: 90%
+        max-width: 1500px
+        margin: 0 auto
+        .search__search
+            border-bottom: 3px solid #94F273
+            width: 200px
+            margin: 0 auto
+            .search__search-input
+                border: 0
+                width: 80%
+                padding: 3px 0px
+            .search__search-button
+                width: 20%
+                border: 0
+                background-color: #fff
+                cursor: pointer
+                .search__search-icon
+                    width: 50%
+        .search__search-result-info
+            font-size: 20px
+            width: 80%
+            margin: 15px 0
+    .search__search-result-container
+        width: 90%
+        max-width: 1500px
+        margin: 0 auto
+        margin-top: 50px
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-around
+
+@media (orientation: landscape) 
+    .search
+        .search__header
+            display: flex
+            justify-content: space-around
+            align-items: center
+            margin-bottom: 20px
+            .search__header-text
+                width: 45%
+                margin: 0
+                .search__header-h1
+                    font-size: 6vw
+                .search__header-p
+                    margin-top: 30px
+                    font-size: 3vw
+            .search__header-img-container
+                display: block
+                width: 40%
+                margin: 0
+                height: 50vh
+                .search__header-plant
+                    width: auto
+                    height: 90%
+                    position: relative
+                    top: 50%
+                    transform: translateY(-50%)
+        .search__container
+            .search__search
+                margin: 0
+            .search__search-result-info
+                text-align: left
+
+@media (orientation: landscape) and (min-width: 1024px)
+    .search
+        padding-top: 80px
+        .search__search-result-info
+            text-align: left
+    
+
+@media (min-width: 1366px)
+    .search
+        .search__header
+            .search__header-text
+                .search__header-h1
+                    font-size: 65px
+                .search__header-p
+                    font-size: 40px
+
+@media (min-width: 1400px)
+    .search
+        .search__header
+            .search__header-text
+                width: 80%
+                .search__header-h1
+                    font-size: 5vw
+                .search__header-p
+                    margin-top: 50px
+                    font-size: 2vw
+                    width: 30vw
+                    margin: 10% auto
+        .search__container
+            .search__search
+                border-bottom: 5px solid #94F273
+                width: 350px
+                .search__search-input
+                    border: 0
+                    width: 80%
+                    padding: 3px 0px
+                    font-size: 22px
+                .search__search-button
+                    width: 20%
+                    border: 0
+                    background-color: #fff
+                    cursor: pointer
+                    .search__search-icon
+                        width: 40%
+            .search__search-result-info
+                text-align: left
+                font-size: 35px

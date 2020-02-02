@@ -6,4 +6,5 @@ module.exports = (app) => {
 
     app.post('/api/getplants/:type', plantsController.getPlantsType);
 
+    app.post('/api/search/:searchValue', plantsController.searchPlants);
 }
