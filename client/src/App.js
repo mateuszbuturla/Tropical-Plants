@@ -11,6 +11,7 @@ import Home from './view/Home/Home';
 import PlantsList from './view/PlantsList/PlantsList';
 import Search from './view/Search/Search';
 import Login from './view/Login/Login';
+import Register from './view/Register/Register';
 import Plant from './view/Plant/Plant';
 import ShopingCart from './view/ShopingCart/ShopingCart';
 import Footer from './view/Footer/Footer';
@@ -106,6 +107,12 @@ class App extends React.Component {
               <>
                 <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} shopingcart={shopingcart} />
                 <Plant {...props} config={config} user={cookies.get('user')} addToShopingCart={(id, amount) => this.addToShopingCart(id, amount)} />
+              </>} exact
+            />
+            <Route path="/register" component={(props) =>
+              <>
+                <Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} shopingcart={shopingcart} />
+                <Register {...props} config={config} user={cookies.get('user')} />
               </>} exact
             />
             <Route path="/login" component={(props) =>

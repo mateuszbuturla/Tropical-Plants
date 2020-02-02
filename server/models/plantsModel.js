@@ -8,6 +8,7 @@ const plantsModel = new Schelma({
     imgsrc: { type: String, required: true },
     whereGrow: { type: String, required: true },
     howCare: { type: String, required: true },
+    price: { type: String, required: true }
 })
 
 module.exports = mongoose.model('plants', plantsModel);

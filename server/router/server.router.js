@@ -12,4 +12,6 @@ module.exports = (app) => {
     app.post('/api/search/:searchValue', plantsController.searchPlants);
 
     app.post('/api/user/login/:login/:password', usersController.userLogin);
+
+    app.post('/api/user/register/:login/:password', usersController.userRegister);
 }
