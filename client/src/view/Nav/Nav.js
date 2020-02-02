@@ -32,9 +32,15 @@ class Nav extends React.Component {
         this.props.history.push(`/search/${search}`);
     }
 
+    logout() {
+        const { logout } = this.props;
+        this.props.history.push(`/`);
+        logout();
+    }
+
     render() {
         const { showMobileMenu, search } = this.state;
-        const { user, logout } = this.props;
+        const { user } = this.props;
         return (
             <>
                 <nav className="nav">
@@ -53,7 +59,7 @@ class Nav extends React.Component {
                                 <li className="nav__link-container"><NavLink className="nav__link" activeClassName="nav__link--active" to="/login" onClick={this.offMobileMenu.bind(this)}>Logowanie</NavLink></li>
                                 :
                                 <>
-                                    <li className="nav__link-container"><p className="nav__link" onClick={logout}>Wyloguj</p></li>
+                                    <li className="nav__link-container"><p className="nav__link" onClick={this.logout.bind(this)}>Wyloguj</p></li>
                                     <li className="nav__link-container"><NavLink className="nav__link" activeClassName="nav__link--active" to="/shopingcart" onClick={this.offMobileMenu.bind(this)}><img className="nav__shopingcart-icon" src={shopingCartIcon} alt="moje zakupy" /></NavLink></li>
                                 </>
                         }

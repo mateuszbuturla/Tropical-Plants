@@ -20,22 +20,28 @@ class Login extends React.Component {
         e.preventDefault();
 
         const { login, password } = this.state;
-        try {
-            fetch(`${this.props.config.api}/api/user/login/${login}/${password}`, { method: 'POST' })
-                .then(r => r.json())
-                .then(r => {
-                    if (r.status === 'correct') {
-                        const cookies = new Cookies();
-                        cookies.set('user', r.user, { maxAge: 9000 });
-                        this.props.history.push(`/`);
-                    }
-                    else if (r.status === 'incorrect') {
-                        this.setState({ message: 'Nie prawidłowe dane logowania' })
-                    }
-                })
+        if (login.length > 0 && password.length > 0) {
+            try {
+                fetch(`${this.props.config.api}/api/user/login/${login}/${password}`, { method: 'POST' })
+                    .then(r => r.json())
+                    .then(r => {
+                        if (r.status === 'correct') {
+                            const cookies = new Cookies();
+                            cookies.set('user', r.user, { maxAge: 9000 });
+                            this.props.history.push(`/`);
+                        }
+                        else if (r.status === 'incorrect') {
+                            this.setState({ message: 'Nie prawidłowe dane logowania' })
+                            this.setState({ password: '' })
+                        }
+                    })
+            }
+            catch {
+                this.setState({ message: 'Wystąpił problem spróbuj ponownie później' })
+            }
         }
-        catch {
-            this.setState({ message: 'Wystąpił problem spróbuj ponownie później' })
+        else {
+            this.setState({ message: 'Uzupełnij wszystkie pola' })
         }
     }
 
