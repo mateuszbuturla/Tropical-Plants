@@ -1,0 +1,124 @@
+.login
+    overflow-x: hidden
+    text-align: center
+    padding-top: 40px
+    height: calc(100vh - 100px)
+    width: 100vw
+    overflow: hidden
+    .login__header
+        width: 100vw
+        .login__header-text
+            width: 80%
+            margin: 0 auto
+            padding: 10% 0px
+            .login__header-h1
+                font-size: 9vw
+                display: inline
+                position: relative
+                &::before
+                    content: ''
+                    position: absolute
+                    bottom: -5px
+                    right: -5px
+                    top: 50%
+                    left: 40%
+                    background-color: #94F273
+                    z-index: -1
+            .login__header-p
+                margin-top: 10%
+                font-size: 5vw
+    .login-form
+        width: 90%
+        height: 50vh
+        margin: 0 auto
+        padding: 30px 15px
+        box-sizing: border-box
+        background: linear-gradient(rgba(0,0,0,0.60),rgba(0,0,0,0.60)), url('../../img/loginBg.jpg')
+        background-repeat: no-repeat
+        background-size: cover
+        background-position: center
+        .login-form__container
+            position: relative
+            top: 50%
+            transform: translateY(-50%)
+            width: 100%
+            .login-form__input
+                width: 250px
+                background-color: transparent
+                border: 0
+                border-bottom: 3px solid #94F273
+                font-size: 25px
+                color: #fff
+                margin-bottom: 20px
+                &::-webkit-input-placeholder
+                    color: #fff
+                &:-ms-input-placeholder
+                    color: #fff
+                &::placeholder
+                    color: #fff
+            .login-form__button
+                width: 250px
+                border: 3px solid #94F273
+                border-radius: 100px
+                background-color: transparent
+                padding: 5px
+                color: #fff
+                font-size: 20px
+                margin-bottom: 20px
+                transition: .3s
+                &:hover
+                    background-color: #94F273
+                    color: #707070
+            .login-form__register-link
+                color: #fff
+                text-decoration: none
+                transition: .3s
+                &:hover
+                    color: #94F273
+
+@media (orientation: landscape)
+    .login
+        padding-top: 0
+        height: calc(100vh - 49px)
+        .login__header
+            height: 100vh
+            overflow: hidden
+            display: flex
+            align-items: center
+            .login__header-text
+                width: 50%
+                margin: 0 auto
+                padding: 0 
+                .login__header-h1
+                    font-size: 5vw
+                .login__header-p
+                    font-size: 3vw
+                    width: 80%
+                    position: relative
+                    left: 50%
+                    transform: translate(-50%)
+        .login-form
+            width: 50%
+            height: 100%
+            background: linear-gradient(rgba(0,0,0,0.60),rgba(0,0,0,0.60)), url('../../img/loginBg.jpg')
+            background-repeat: no-repeat
+            background-size: cover
+            background-position: center
+
+@media (min-width: 1400px)
+    .login
+        .login-form
+            .login-form__container
+                text-align: left
+                padding-left: 5vw
+                .login-form__input
+                    width: 40%
+                    margin-bottom: 5vh
+                    font-size: 2.5vw
+                .login-form__button
+                    width: 40%
+                    margin-bottom: 40px
+                    font-size: 1.5vw
+                    padding: 0.5vw
+                .login-form__register-link
+                    font-size: 1vw
