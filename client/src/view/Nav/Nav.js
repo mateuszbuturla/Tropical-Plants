@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 
 import magnifier from '../../img/magnifier.png';
+import shopingCartIcon from '../../img/shopingcart.png';
 
 import './nav.sass';
 
@@ -33,6 +34,7 @@ class Nav extends React.Component {
 
     render() {
         const { showMobileMenu, search } = this.state;
+        const { user } = this.props;
         return (
             <>
                 <nav className="nav">
@@ -46,7 +48,16 @@ class Nav extends React.Component {
                         <li className="nav__link-container"><NavLink className="nav__link" activeClassName="nav__link--active" to="/" onClick={this.offMobileMenu.bind(this)} exact>Home</NavLink></li>
                         <li className="nav__link-container"><NavLink className="nav__link" activeClassName="nav__link--active" to="/flowerpot" onClick={this.offMobileMenu.bind(this)}>Rośliny doniczkowe</NavLink></li>
                         <li className="nav__link-container"><NavLink className="nav__link" activeClassName="nav__link--active" to="/garden" onClick={this.offMobileMenu.bind(this)}>Rośliny ogrodowe</NavLink></li>
-                        <li className="nav__link-container"><NavLink className="nav__link" activeClassName="nav__link--active" to="/login" onClick={this.offMobileMenu.bind(this)}>Logowanie</NavLink></li>
+                        {
+                            user === undefined ?
+                                <li className="nav__link-container"><NavLink className="nav__link" activeClassName="nav__link--active" to="/login" onClick={this.offMobileMenu.bind(this)}>Logowanie</NavLink></li>
+                                :
+                                <>
+                                    <li className="nav__link-container"><p className="nav__link">Wyloguj</p></li>
+                                    <li className="nav__link-container"><NavLink className="nav__link" activeClassName="nav__link--active" to="/shopingcart" onClick={this.offMobileMenu.bind(this)}><img className="nav__shopingcart-icon" src={shopingCartIcon} alt="moje zakupy" /></NavLink></li>
+                                </>
+                        }
+
                         <li className="nav__search">
                             <form>
                                 <input className="nav__search-input" type="text" onChange={this.handleInputChange.bind(this)} value={search} placeholder="Szukaj" />

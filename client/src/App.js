@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 import config from './config';
 
@@ -15,16 +16,17 @@ import Footer from './view/Footer/Footer';
 import './reset.css';
 
 function App() {
+  const cookies = new Cookies();
   return (
     <div className="App">
       <BrowserRouter>
         <ScrollToTop />
         <Switch>
-          <Route path="/login" component={(props) => <><Nav {...props} config={config} /><Login {...props} config={config} /></>} />
-          <Route path="/search/:searchValue" component={(props) => <><Nav {...props} config={config} /><Search {...props} config={config} /></>} />
-          <Route path="/search" component={(props) => <><Nav {...props} config={config} /><Search {...props} config={config} /></>} />
-          <Route path="/:type" component={(props) => <><Nav {...props} config={config} /><PlantsList {...props} config={config} /></>} exact />
-          <Route path="/" component={(props) => <><Nav {...props} config={config} /><Home {...props} config={config} /></>} exact />
+          <Route path="/login" component={(props) => <><Nav {...props} config={config} user={cookies.get('user')} /><Login {...props} config={config} user={cookies.get('user')} /></>} />
+          <Route path="/search/:searchValue" component={(props) => <><Nav {...props} config={config} user={cookies.get('user')} /><Search {...props} config={config} user={cookies.get('user')} /></>} />
+          <Route path="/search" component={(props) => <><Nav {...props} config={config} user={cookies.get('user')} /><Search {...props} config={config} user={cookies.get('user')} /></>} />
+          <Route path="/:type" component={(props) => <><Nav {...props} config={config} user={cookies.get('user')} /><PlantsList {...props} config={config} user={cookies.get('user')} /></>} exact />
+          <Route path="/" component={(props) => <><Nav {...props} config={config} user={cookies.get('user')} /><Home {...props} config={config} user={cookies.get('user')} /></>} exact />
         </Switch>
       </BrowserRouter>
       <Footer />
