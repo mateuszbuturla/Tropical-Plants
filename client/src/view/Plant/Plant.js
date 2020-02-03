@@ -12,6 +12,7 @@ class Plant extends React.Component {
 
     componentDidMount() {
         const name = this.props.match.params.name;
+        document.title = `Tropical Plants - ${name}`
         try {
             fetch(`${this.props.config.api}/api/getPlantsByName/${name}`, { method: 'POST' })
                 .then(r => r.json())

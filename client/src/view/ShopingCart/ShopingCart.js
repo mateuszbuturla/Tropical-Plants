@@ -13,6 +13,7 @@ class ShopingCart extends React.Component {
     }
 
     componentDidMount() {
+        document.title = `Tropical Plants - twoje zakupy`
         try {
             fetch(`${this.props.config.api}/api/getPlants`, { method: 'POST' })
                 .then(r => r.json())

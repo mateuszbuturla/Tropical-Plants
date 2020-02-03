@@ -43,6 +43,7 @@ class Search extends React.Component {
     }
 
     componentDidMount() {
+        document.title = `Tropical Plants - wyszukiwarka`
         this.getData();
     }
 

@@ -14,6 +14,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
+        document.title = 'Tropical Plants - Home'
         try {
             fetch(`${this.props.config.api}/api/getPlants`, { method: 'POST' })
                 .then(r => r.json())

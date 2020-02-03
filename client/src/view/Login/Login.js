@@ -12,6 +12,10 @@ class Login extends React.Component {
         message: ''
     }
 
+    componentDidMount() {
+        document.title = 'Tropical Plants - Logowanie'
+    }
+
     handleInputChange(e) {
         this.setState({ [e.target.id]: e.target.value });
     }

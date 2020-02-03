@@ -15,11 +15,14 @@ class PlantsList extends React.Component {
 
     componentDidMount() {
         this.getData();
+        const type = this.props.match.params.type;
+        document.title = `Tropical Plants - ${type}`
     }
 
     componentDidUpdate() {
         const { prevouseUrl } = this.state;
         const currentUrl = this.props.match.params.type;
+        document.title = `Tropical Plants - ${currentUrl}`
         if (prevouseUrl !== currentUrl)
             this.getData();
     }
