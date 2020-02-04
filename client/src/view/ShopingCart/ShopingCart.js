@@ -24,6 +24,17 @@ class ShopingCart extends React.Component {
         }
     }
 
+    pay() {
+        const { shopingcart, setNotification, changeShopingCart } = this.props;
+        if (shopingcart.length > 0) {
+            setNotification('Dziękujemy za zakupy w naszym sklepie')
+            changeShopingCart(null, 'clear')
+        }
+        else {
+            setNotification('Twój koszyk jest pusty')
+        }
+    }
+
     render() {
         const { plants } = this.state;
         const { shopingcart, addToShopingCart, subtractOneProduct, removePlantFromShopingCart, changeShopingCart } = this.props;
@@ -62,7 +73,7 @@ class ShopingCart extends React.Component {
                         {_shopingCartPlant}
                     </div>
                     <div className="schoping-cart__pay-container">
-                        <div className="schoping-cart__pay-button">
+                        <div className="schoping-cart__pay-button" onClick={this.pay.bind(this)}>
                             Zapłać
                         </div>
                         <p className="schoping-cart__all-price">Łączna cena: {allPrice} zł</p>

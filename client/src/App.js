@@ -19,12 +19,14 @@ import Footer from './view/Footer/Footer';
 import './reset.css';
 
 let saveShopingCartTimeout = null;
+let notyficationTimeout = null;
 
 class App extends React.Component {
 
 	state = {
 		user: undefined,
 		shopingcart: [],
+		notification: ''
 	}
 
 	componentDidMount() {
@@ -51,6 +53,7 @@ class App extends React.Component {
 			case 'remove':
 				const index = newShopingCart.findIndex(plant => plant.id === id);
 				newShopingCart.splice(index, 1)
+				this.setNotification('Usunięto produkt')
 				break;
 			case 'subtract':
 				const index2 = newShopingCart.findIndex(plant => plant.id === id);
@@ -58,6 +61,9 @@ class App extends React.Component {
 				if (newShopingCart[index2].amount <= 0) {
 					newShopingCart.splice(index2, 1)
 				}
+				break;
+			case 'clear':
+				newShopingCart = [];
 				break;
 		}
 		const cookies = new Cookies();
@@ -84,6 +90,14 @@ class App extends React.Component {
 		this.setState({ user: undefined, shopingcart: [] })
 	}
 
+	setNotification(content) {
+		clearTimeout(notyficationTimeout);
+		this.setState({ notification: content });
+		notyficationTimeout = setTimeout(() => {
+			this.setState({ notification: '' });
+		}, 5000);
+	}
+
 	getUser() {
 		const { shopingcart } = this.state;
 		const cookies = new Cookies();
@@ -92,7 +106,7 @@ class App extends React.Component {
 	}
 
 	render() {
-		const { shopingcart } = this.state;
+		const { shopingcart, notification } = this.state;
 		const cookies = new Cookies();
 		return (
 			<div className="App">
@@ -108,7 +122,7 @@ class App extends React.Component {
 									shopingcart={shopingcart}
 									changeShopingCart={(id, action) => this.changeShopingCart(id, action)}
 									addToShopingCart={(e, id, amount) => this.addOneProduct(e, id)} subtractOneProduct={(e, id) => this.subtractOneProduct(e, id)}
-									removePlantFromShopingCart={(e, id) => this.removePlantFromShopingCart(e, id)}
+									setNotification={content => this.setNotification(content)}
 								/>
 							</>} exact
 						/>
@@ -118,6 +132,7 @@ class App extends React.Component {
 								<Plant {...props}
 									config={config}
 									user={cookies.get('user')}
+									setNotification={content => this.setNotification(content)}
 									changeShopingCart={(id, action) => this.changeShopingCart(id, action)} />
 							</>} exact
 						/>
@@ -160,6 +175,12 @@ class App extends React.Component {
 					</Switch>
 				</BrowserRouter>
 				<Footer />
+				{
+					notification !== '' &&
+					<div className="notification">
+						{notification}
+					</div>
+				}
 			</div>
 		);
 	}

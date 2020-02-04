@@ -29,7 +29,7 @@ class Plant extends React.Component {
     render() {
         const { plant } = this.state;
         const name = this.props.match.params.name;
-        const { changeShopingCart } = this.props;
+        const { changeShopingCart, setNotification } = this.props;
         return (
             <>
                 <section className="plant">
@@ -63,7 +63,10 @@ class Plant extends React.Component {
                                 </div>
                             </div>
                             <div className="plant__add-to-shopingcart-button"
-                                onClick={() => changeShopingCart(plant._id, 'add')}>
+                                onClick={() => {
+                                    changeShopingCart(plant._id, 'add');
+                                    setNotification('Dodano do wózka');
+                                }}>
                                 Dodaj do koszyka
                             </div>
                         </>
