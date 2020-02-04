@@ -26,12 +26,17 @@ class ShopingCart extends React.Component {
 
     render() {
         const { plants } = this.state;
-        const { shopingcart, addToShopingCart, subtractOneProduct, removePlantFromShopingCart } = this.props;
+        const { shopingcart, addToShopingCart, subtractOneProduct, removePlantFromShopingCart, changeShopingCart } = this.props;
         let _shopingCartPlant = null;
         let allPrice = 0;
         if (plants !== null) {
             _shopingCartPlant = shopingcart.map((product, index) =>
-                <ShopingCartPlant key={index} plant={plants.find(plant => plant._id === product.id)} amount={product.amount} addToShopingCart={(e, id) => addToShopingCart(e, id)} subtractOneProduct={(e, id) => subtractOneProduct(e, id)} removePlantFromShopingCart={(e, id) => removePlantFromShopingCart(e, id)} />
+                <ShopingCartPlant
+                    key={index}
+                    plant={plants.find(plant => plant._id === product.id)}
+                    amount={product.amount}
+                    changeShopingCart={(id, action) => changeShopingCart(id, action)}
+                />
             )
             shopingcart.map(product => {
                 const _plant = plants.find(plant => plant._id === product.id)

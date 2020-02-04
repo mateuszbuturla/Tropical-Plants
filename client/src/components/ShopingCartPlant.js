@@ -64,14 +64,14 @@ function ShopingCartPlant(props) {
             <Div1>
                 <PlantName>{props.plant.name}</PlantName>
                 <Action>
-                    <AddSubtract onClick={e => props.subtractOneProduct(e, props.plant._id)}> - </AddSubtract>
+                    <AddSubtract onClick={() => props.changeShopingCart(props.plant._id, 'subtract')}> - </AddSubtract>
                     <Amount>{props.amount}</Amount>
-                    <AddSubtract onClick={e => props.addToShopingCart(e, props.plant._id)}> + </AddSubtract>
+                    <AddSubtract onClick={() => props.changeShopingCart(props.plant._id, 'add')}> + </AddSubtract>
                 </Action>
             </Div1>
             <Div2>
                 <Price>{props.amount * Number(props.plant.price)}zł</Price>
-                <Bin src={BinIcon} alt="wyrzyć" onClick={e => props.removePlantFromShopingCart(e, props.plant._id)} />
+                <Bin src={BinIcon} alt="wyrzyć" onClick={() => props.changeShopingCart(props.plant._id, 'remove')} />
             </Div2>
         </Container>
     );
