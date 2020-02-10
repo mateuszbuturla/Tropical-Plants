@@ -15,6 +15,7 @@ import Register from './view/Register/Register';
 import Plant from './view/Plant/Plant';
 import ShopingCart from './view/ShopingCart/ShopingCart';
 import Footer from './view/Footer/Footer';
+import NoMatch from './view/NoMatch/NoMatch';
 
 import './reset.css';
 
@@ -172,6 +173,11 @@ class App extends React.Component {
 								<Home {...props} config={config} user={cookies.get('user')} />
 							</>} exact
 						/>
+						<Route component={(props) =>
+							<>
+								<Nav {...props} config={config} user={cookies.get('user')} logout={() => this.logout()} shopingcart={shopingcart} />
+								<NoMatch />
+							</>} />
 					</Switch>
 				</BrowserRouter>
 				<Footer />
